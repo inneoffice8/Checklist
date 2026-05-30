@@ -6,69 +6,67 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Daily Check">
-<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230E7C86'/><text y='.9em' font-size='80' x='10'>✅</text></svg>">
-<title>📋 Daily Check</title>
+<title>Daily Check — Apasaraporn</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}
-body{background:#F0F4F7;font-family:-apple-system,'Noto Sans Thai',Arial,sans-serif;color:#111;padding-bottom:100px;max-width:480px;margin:0 auto}
-.hdr{background:linear-gradient(160deg,#0E7C86 0%,#0a5560 100%);padding:env(safe-area-inset-top,16px) 18px 18px;position:sticky;top:0;z-index:99}
-.hdr-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
-.hdr-title{color:#fff;font-size:17px;font-weight:900}
-.hdr-date{color:rgba(255,255,255,.8);font-size:12px;margin-top:2px}
-.date-nav{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.nbtn{background:rgba(255,255,255,.2);border:none;border-radius:10px;width:38px;height:38px;color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.date-box{flex:1;text-align:center}
-.date-big{color:#fff;font-size:16px;font-weight:900}
-.date-sm{color:rgba(255,255,255,.7);font-size:11px;margin-top:1px}
-.today-pill{background:#4CAF50;color:#fff;font-size:9px;font-weight:700;padding:1px 7px;border-radius:99px;margin-left:6px}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:#F0F4F7;font-family:-apple-system,'Noto Sans Thai',sans-serif;color:#111;padding-bottom:90px;max-width:480px;margin:0 auto}
+.hdr{background:linear-gradient(160deg,#0E7C86,#0a5560);padding:16px 16px 18px;position:sticky;top:0;z-index:99}
+.hdr-title{color:#fff;font-size:16px;font-weight:900;margin-bottom:1px}
+.hdr-sub{color:rgba(255,255,255,.65);font-size:11px;margin-bottom:10px}
+.date-nav{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.nbtn{background:rgba(255,255,255,.2);border:none;border-radius:10px;width:38px;height:38px;color:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.dbox{flex:1;text-align:center}
+.dbig{color:#fff;font-size:15px;font-weight:900;display:flex;align-items:center;justify-content:center;gap:6px}
+.today-pill{background:#4CAF50;color:#fff;font-size:9px;font-weight:700;padding:1px 7px;border-radius:99px}
+.dsm{color:rgba(255,255,255,.65);font-size:11px;margin-top:1px}
 .prog-row{display:flex;align-items:center;gap:8px}
 .prog-bg{flex:1;background:rgba(255,255,255,.2);border-radius:99px;height:9px;overflow:hidden}
 .prog-fill{height:100%;border-radius:99px;transition:width .3s}
-.prog-pct{color:#fff;font-weight:900;font-size:15px;min-width:40px;text-align:right}
-.prog-sub{color:rgba(255,255,255,.65);font-size:10px;margin-top:3px}
+.prog-pct{color:#fff;font-weight:900;font-size:15px;min-width:38px;text-align:right}
+.prog-sub{color:rgba(255,255,255,.6);font-size:10px;margin-top:3px}
 .body{padding:12px 12px 0}
 .back-btn{width:100%;background:#fff;border:2px solid #0E7C86;border-radius:11px;padding:9px;color:#0E7C86;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:12px;font-family:inherit}
-.slabel{font-size:10px;font-weight:700;letter-spacing:2px;color:#999;margin:12px 0 7px}
-.task{background:#fff;border:1.5px solid #E5E5E5;border-radius:13px;padding:12px 14px;margin-bottom:7px;display:flex;align-items:flex-start;gap:12px;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.05);transition:all .15s;-webkit-user-select:none;user-select:none}
+.slabel{font-size:10px;font-weight:700;letter-spacing:2px;color:#888;margin:12px 0 7px}
+.task{background:#fff;border:1.5px solid #E5E5E5;border-radius:13px;padding:12px 14px;margin-bottom:7px;display:flex;align-items:flex-start;gap:12px;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.05);-webkit-user-select:none;user-select:none}
 .task.done{background:#F4FBF4;border-color:#A5D6A7}
-.task.ms-card{background:#FFF8F8;border-color:#FFCDD2}
-.task.ms-card.done{background:#F4FBF4;border-color:#A5D6A7}
-.task.wk-card{background:#FFFDE7;border-color:#FFE082}
-.task.wk-card.done{background:#F4FBF4;border-color:#A5D6A7}
-.chk{width:26px;height:26px;flex-shrink:0;border-radius:50%;border:2px solid #CCC;background:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;color:#fff;font-weight:900;transition:all .2s;margin-top:1px}
+.task.ms{background:#FFF8F8;border-color:#FFCDD2}
+.task.ms.done{background:#F4FBF4;border-color:#A5D6A7}
+.task.wk{background:#FFFDE7;border-color:#FFE082}
+.task.wk.done{background:#F4FBF4;border-color:#A5D6A7}
+.task.new{background:#F3E5F5;border-color:#CE93D8}
+.task.new.done{background:#F4FBF4;border-color:#A5D6A7}
+.chk{width:26px;height:26px;flex-shrink:0;border-radius:50%;border:2px solid #CCC;background:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff;font-weight:900;transition:all .2s;margin-top:1px}
 .chk.on{background:#4CAF50;border-color:#4CAF50}
-.tinfo{flex:1;min-width:0}
-.ttxt{font-size:14px;font-weight:700;color:#111;line-height:1.4;margin-bottom:5px;word-break:break-word}
-.ttxt.done{color:#AAAAAA;text-decoration:line-through;font-weight:400}
-.tmeta{display:flex;flex-wrap:wrap;gap:5px}
+.ti{flex:1;min-width:0}
+.tx{font-size:14px;font-weight:700;color:#111;line-height:1.4;margin-bottom:5px;word-break:break-word}
+.tx.done{color:#AAA;text-decoration:line-through;font-weight:400}
+.meta{display:flex;flex-wrap:wrap;gap:5px}
 .tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:99px}
 .due{font-size:10px;color:#AAA;background:#F5F5F5;padding:2px 8px;border-radius:99px}
-.ms-pill{font-size:10px;background:#FFEBEE;color:#C62828;padding:2px 8px;border-radius:99px;font-weight:700}
+.mspill{font-size:10px;background:#FFEBEE;color:#C62828;padding:2px 8px;border-radius:99px;font-weight:700}
 .ms-banner{background:#FFF3F3;border:1.5px solid #FFCDD2;border-radius:13px;padding:11px 14px;margin-bottom:12px}
 .ms-title{color:#C62828;font-size:11px;font-weight:700;margin-bottom:5px}
 .ms-item{color:#333;font-size:12px;margin-bottom:2px}
-.win-banner{background:linear-gradient(135deg,#2E7D32,#43A047);border-radius:16px;padding:20px;text-align:center;margin:8px 0 16px}
-.divider{border:none;border-top:1.5px solid #EBEBEB;margin:12px 0}
-.note-wrap{margin-bottom:12px}
+.win{background:linear-gradient(135deg,#2E7D32,#43A047);border-radius:16px;padding:20px;text-align:center;margin:8px 0 16px}
+.divider{border:none;border-top:1.5px solid #E8E8E8;margin:12px 0}
 .note-btn{width:100%;background:#fff;border:1.5px dashed #CCC;border-radius:13px;padding:11px 14px;color:#AAA;font-size:13px;cursor:pointer;text-align:left;font-family:inherit;display:flex;align-items:center;gap:8px}
-.note-area{width:100%;background:#fff;border:1.5px solid #CCC;border-radius:13px;padding:12px 14px;color:#111;font-size:13px;resize:vertical;min-height:85px;outline:none;font-family:inherit;margin-top:6px;-webkit-appearance:none}
+.note-area{width:100%;background:#fff;border:1.5px solid #CCC;border-radius:13px;padding:12px 14px;color:#111;font-size:13px;resize:vertical;min-height:85px;outline:none;font-family:inherit;margin-top:6px}
 .foot{text-align:center;color:#CCC;font-size:10px;padding:8px 0 16px}
+.phase-bar{display:flex;gap:6px;overflow-x:auto;margin-bottom:2px;padding-bottom:2px}
+.phase-bar::-webkit-scrollbar{display:none}
+.pbtn{flex-shrink:0;border:2px solid #ddd;border-radius:99px;padding:4px 12px;background:#fff;cursor:pointer;font-size:11px;font-weight:700;color:#888;font-family:inherit}
+.pbtn.on{border-color:#0E7C86;background:#0E7C86;color:#fff}
 </style>
 </head>
 <body>
-
 <div class="hdr">
-  <div class="hdr-top">
-    <div>
-      <div class="hdr-title">📋 Daily Checklist</div>
-      <div class="hdr-date">Apasaraporn · 2026–2030</div>
-    </div>
-  </div>
+  <div class="hdr-title">📋 Daily Check — Apasaraporn</div>
+  <div class="hdr-sub">Medical Billing → Pharmacy Tech → 🇨🇦 PR 2028</div>
   <div class="date-nav">
     <button class="nbtn" onclick="go(-1)">‹</button>
-    <div class="date-box">
-      <div class="date-big" id="d-main"></div>
-      <div class="date-sm" id="d-sub"></div>
+    <div class="dbox">
+      <div class="dbig" id="d-main"></div>
+      <div class="dsm" id="d-sub"></div>
     </div>
     <button class="nbtn" onclick="go(1)">›</button>
   </div>
@@ -78,54 +76,66 @@ body{background:#F0F4F7;font-family:-apple-system,'Noto Sans Thai',Arial,sans-se
   </div>
   <div class="prog-sub" id="psub"></div>
 </div>
-
 <div class="body" id="app"></div>
-
 <script>
-const TH_D=["อาทิตย์","จันทร์","อังคาร","พุธ","พฤหัส","ศุกร์","เสาร์"];
-const TH_M=["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."];
+const THD=["อาทิตย์","จันทร์","อังคาร","พุธ","พฤหัส","ศุกร์","เสาร์"];
+const THM=["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."];
 const fmt=d=>d.toISOString().slice(0,10);
 const shift=(s,n)=>{const d=new Date(s);d.setDate(d.getDate()+n);return fmt(d);};
 const TODAY=fmt(new Date());
-let cur=TODAY;
-let C={},N={},showNote=false;
-try{C=JSON.parse(localStorage.getItem("dc3")||"{}");N=JSON.parse(localStorage.getItem("dn3")||"{}");}catch(e){}
-const sv=()=>{try{localStorage.setItem("dc3",JSON.stringify(C));localStorage.setItem("dn3",JSON.stringify(N));}catch(e){}};
+let cur=TODAY,C={},N={},showNote=false;
+try{C=JSON.parse(localStorage.getItem("dc4")||"{}");N=JSON.parse(localStorage.getItem("dn4")||"{}");}catch(e){}
+const sv=()=>{try{localStorage.setItem("dc4",JSON.stringify(C));localStorage.setItem("dn4",JSON.stringify(N));}catch(e){}};
 
+// ── DAILY TASKS ──
 const DAILY=[
-  {id:"d1",t:"10:00",e:"🌅",tx:"ตื่นนอน + Stretch เบาๆ 15 นาที",       tg:"สุขภาพ",  tc:"#1B5E20",tb:"#E8F5E9"},
-  {id:"d2",t:"11:00",e:"📱",tx:"ถ่าย/ตัดต่อ/โพส Reels & TikTok",       tg:"รายได้",  tc:"#BF360C",tb:"#FBE9E7"},
-  {id:"d3",t:"12:00",e:"🛍️",tx:"โพสขายสินค้าออนไลน์ + เช็คออเดอร์",   tg:"รายได้",  tc:"#BF360C",tb:"#FBE9E7"},
-  {id:"d4",t:"12:30",e:"📚",tx:"เรียน Medical English 30 นาที",         tg:"ทักษะ",   tc:"#E65100",tb:"#FFF3E0"},
-  {id:"d5",t:"13:00",e:"📈",tx:"ดูกราฟ TradingView / เรียนเทรด 30 นาที",tg:"ทักษะ",  tc:"#E65100",tb:"#FFF3E0"},
-  {id:"d6",t:"14:00",e:"💼",tx:"ทำงานหลัก (เกาหลี) 14:00–02:00",      tg:"งาน",    tc:"#01579B",tb:"#E3F2FD"},
-  {id:"d7",t:"20:00",e:"💰",tx:"บันทึกรายได้วันนี้ + โอนเงินออม",      tg:"การเงิน", tc:"#004D40",tb:"#E0F2F1"},
+  {id:"d1",t:"10:00",e:"🌅",tx:"ตื่นนอน + Stretch 15 นาที",            tg:"สุขภาพ", tc:"#1B5E20",tb:"#E8F5E9"},
+  {id:"d2",t:"11:00",e:"📱",tx:"Reels & TikTok (ถ่าย/ตัด/โพส)",       tg:"รายได้", tc:"#BF360C",tb:"#FBE9E7"},
+  {id:"d3",t:"11:45",e:"🛍️",tx:"โพสขายสินค้าออนไลน์ + เช็คออเดอร์",  tg:"รายได้", tc:"#BF360C",tb:"#FBE9E7"},
+  {id:"d4",t:"12:15",e:"💊",tx:"เรียน Medical Billing 30 นาที (AAPC/Coursera)", tg:"Billing",tc:"#4A148C",tb:"#EDE7F6"},
+  {id:"d5",t:"12:45",e:"📚",tx:"เรียน Medical English 15 นาที",         tg:"ทักษะ",  tc:"#E65100",tb:"#FFF3E0"},
+  {id:"d6",t:"13:00",e:"💼",tx:"เตรียมตัวไปทำงาน",                     tg:"งาน",   tc:"#01579B",tb:"#E3F2FD"},
+  {id:"d7",t:"14:00",e:"💼",tx:"ทำงานหลัก (เกาหลี) 14:00–02:00",      tg:"งาน",   tc:"#01579B",tb:"#E3F2FD"},
+  {id:"d8",t:"20:00",e:"💰",tx:"บันทึกรายได้วันนี้ + โอนเงินออม",      tg:"การเงิน",tc:"#004D40",tb:"#E0F2F1"},
 ];
+// ── WEEKLY ──
 const WK={
   0:[{id:"w1",e:"💸",tx:"สรุปรายได้สัปดาห์ + อัปเดต Income Tracker",tg:"การเงิน",tc:"#004D40",tb:"#E0F2F1"},
-     {id:"w2",e:"🗓️",tx:"วางแผน Content + Hashtag สัปดาห์ถัดไป",   tg:"Social",  tc:"#880E4F",tb:"#FCE4EC"}],
-  6:[{id:"w3",e:"🎥",tx:"ถ่ายสต็อกคลิปหลายอันไว้ใช้สัปดาห์หน้า",  tg:"Social",  tc:"#880E4F",tb:"#FCE4EC"},
-     {id:"w4",e:"✂️",tx:"ตัดต่อคลิปค้างอยู่ + เตรียม Caption",     tg:"Social",  tc:"#880E4F",tb:"#FCE4EC"}],
+     {id:"w2",e:"🗓️",tx:"วางแผน Content + Hashtag สัปดาห์หน้า",      tg:"Social",  tc:"#880E4F",tb:"#FCE4EC"}],
+  6:[{id:"w3",e:"🎥",tx:"ถ่ายสต็อกคลิปหลายอันไว้ใช้สัปดาห์หน้า",   tg:"Social",  tc:"#880E4F",tb:"#FCE4EC"},
+     {id:"w4",e:"📝",tx:"ทบทวนบทเรียน Medical Billing สัปดาห์นี้",   tg:"Billing", tc:"#4A148C",tb:"#EDE7F6"}],
 };
+// ── MILESTONES (เดิม + ใหม่) ──
 const MS=[
-  {f:"2026-06-01",to:"2026-06-07",id:"m1",e:"🛂",tx:"ต่ออายุพาสปอร์ต (ถ้าเหลือ < 3 ปี)",              tg:"เอกสาร",    tc:"#0D47A1",tb:"#E3F2FD"},
-  {f:"2026-06-01",to:"2026-06-07",id:"m2",e:"📄",tx:"แปลวุฒิ + ประวัติทำงานเป็นอังกฤษ (Notary)",      tg:"เอกสาร",    tc:"#0D47A1",tb:"#E3F2FD"},
-  {f:"2026-06-01",to:"2026-06-07",id:"m3",e:"🌐",tx:"ลงทะเบียน toea.doe.go.th",                         tg:"ต่างประเทศ", tc:"#1B5E20",tb:"#E8F5E9"},
-  {f:"2026-06-01",to:"2026-06-07",id:"m4",e:"🎓",tx:"สมัคร iTalki + Preply + เปิด TikTok/Instagram",   tg:"รายได้",    tc:"#BF360C",tb:"#FBE9E7"},
-  {f:"2026-06-15",to:"2026-06-18",id:"m5",e:"📞",tx:"โทร 1506 กด 2 สอบถามงาน Caregiver อิสราเอล",    tg:"ต่างประเทศ", tc:"#1B5E20",tb:"#E8F5E9"},
-  {f:"2026-07-01",to:"2026-07-07",id:"m6",e:"🪙",tx:"สำรวจทำเลตู้ซักผ้า (ให้คนในบ้านช่วย)",          tg:"ลงทุน",     tc:"#4A148C",tb:"#EDE7F6"},
-  {f:"2026-08-01",to:"2026-08-03",id:"m7",e:"📊",tx:"ประเมินรายได้เสริม 3 เดือนแรก ปรับแผน",          tg:"การเงิน",   tc:"#004D40",tb:"#E0F2F1"},
-  {f:"2026-10-01",to:"2026-10-07",id:"m8",e:"🏥",tx:"ค้นหาหลักสูตร Caregiver 420 ชม. ในไทย",          tg:"การศึกษา",  tc:"#1A237E",tb:"#E8EAF6"},
-  {f:"2026-12-01",to:"2026-12-07",id:"m9",e:"🏦",tx:"ปิดบัญชีเกาหลี โอนเงินกลับไทยทั้งหมด",          tg:"การเงิน",   tc:"#004D40",tb:"#E0F2F1"},
-  {f:"2026-12-20",to:"2026-12-31",id:"m10",e:"🇹🇭",tx:"กลับไทย! เตรียมตัวให้พร้อม",                  tg:"สำคัญ",     tc:"#B71C1C",tb:"#FFEBEE"},
-  {f:"2027-01-01",to:"2027-01-15",id:"m11",e:"🪙",tx:"ติดตั้งตู้ซักผ้า + ตู้น้ำดื่ม (~200,000 บาท)", tg:"ลงทุน",     tc:"#4A148C",tb:"#EDE7F6"},
-  {f:"2027-01-05",to:"2027-01-15",id:"m12",e:"🏥",tx:"สมัครเรียนหลักสูตร Caregiver 420 ชม.",          tg:"การศึกษา",  tc:"#1A237E",tb:"#E8EAF6"},
-  {f:"2027-03-25",to:"2027-03-31",id:"m13",e:"🎓",tx:"จบหลักสูตร 420 ชม. + ขึ้นทะเบียน สบส.",         tg:"การศึกษา",  tc:"#1A237E",tb:"#E8EAF6"},
-  {f:"2027-07-01",to:"2027-07-07",id:"m14",e:"📝",tx:"สมัคร IELTS / ลงเรียนเตรียมสอบ (เป้า 6.0+)",   tg:"ทักษะ",     tc:"#E65100",tb:"#FFF3E0"},
-  {f:"2027-09-01",to:"2027-09-07",id:"m15",e:"✈️",tx:"ยื่นสมัครงานต่างประเทศ (อิสราเอล/ไต้หวัน)",   tg:"ต่างประเทศ", tc:"#1B5E20",tb:"#E8F5E9"},
-  {f:"2028-01-01",to:"2028-01-10",id:"m16",e:"🛫",tx:"บิน! ออกเดินทางไปต่างประเทศ",                   tg:"สำคัญ",     tc:"#B71C1C",tb:"#FFEBEE"},
-  {f:"2029-01-01",to:"2029-01-15",id:"m17",e:"🇨🇦",tx:"สมัคร Canada Home Care Worker Pilot (PR)",     tg:"PR",        tc:"#B71C1C",tb:"#FFEBEE"},
-  {f:"2030-01-01",to:"2030-01-10",id:"m18",e:"🏆",tx:"PR Landing แคนาดา! 🎉",                         tg:"สำคัญ",     tc:"#B71C1C",tb:"#FFEBEE"},
+  // Phase 1 เกาหลี
+  {f:"2026-06-01",to:"2026-06-07",id:"m1",e:"🛂",tx:"ต่ออายุพาสปอร์ต (เหลือ < 3 ปี)",tg:"เอกสาร",tc:"#0D47A1",tb:"#E3F2FD"},
+  {f:"2026-06-01",to:"2026-06-07",id:"m2",e:"📄",tx:"แปลวุฒิ + ประวัติทำงานเป็นอังกฤษ",tg:"เอกสาร",tc:"#0D47A1",tb:"#E3F2FD"},
+  {f:"2026-06-01",to:"2026-06-07",id:"m3",e:"🌐",tx:"ลงทะเบียน toea.doe.go.th",tg:"ต่างประเทศ",tc:"#1B5E20",tb:"#E8F5E9"},
+  {f:"2026-06-01",to:"2026-06-07",id:"m4",e:"💊",tx:"สมัคร AAPC Membership + เริ่มคอร์ส CPB",tg:"Billing",tc:"#4A148C",tb:"#EDE7F6",new:true},
+  {f:"2026-06-01",to:"2026-06-07",id:"m5",e:"🎓",tx:"สมัคร iTalki + Preply + เปิด TikTok",tg:"รายได้",tc:"#BF360C",tb:"#FBE9E7"},
+  {f:"2026-06-15",to:"2026-06-18",id:"m6",e:"📞",tx:"โทร 1506 กด 2 สอบถามงาน Caregiver",tg:"ต่างประเทศ",tc:"#1B5E20",tb:"#E8F5E9"},
+  {f:"2026-07-01",to:"2026-07-07",id:"m7",e:"🪙",tx:"สำรวจทำเลตู้ซักผ้า (ให้คนในบ้านช่วย)",tg:"ลงทุน",tc:"#4A148C",tb:"#EDE7F6"},
+  {f:"2026-08-01",to:"2026-08-07",id:"m8",e:"📊",tx:"ประเมินรายได้เสริม 3 เดือน + ปรับแผน",tg:"การเงิน",tc:"#004D40",tb:"#E0F2F1"},
+  {f:"2026-09-01",to:"2026-09-07",id:"m9",e:"💊",tx:"จ่ายค่าสอบ CPB ($399) + จองวันสอบ",tg:"Billing",tc:"#4A148C",tb:"#EDE7F6",new:true},
+  {f:"2026-10-01",to:"2026-10-07",id:"m10",e:"📝",tx:"สอบ CPB Exam (Certified Professional Biller) ✅",tg:"Billing",tc:"#4A148C",tb:"#EDE7F6",new:true},
+  {f:"2026-11-01",to:"2026-11-07",id:"m11",e:"🔍",tx:"ศึกษาหลักสูตร Pharmacy Tech ในแคนาดา",tg:"PharmTech",tc:"#1B5E20",tb:"#E8F5E9",new:true},
+  {f:"2026-12-01",to:"2026-12-07",id:"m12",e:"🏦",tx:"ปิดบัญชีเกาหลี โอนเงินกลับไทยทั้งหมด",tg:"การเงิน",tc:"#004D40",tb:"#E0F2F1"},
+  {f:"2026-12-20",to:"2026-12-31",id:"m13",e:"🇹🇭",tx:"กลับไทย!",tg:"สำคัญ",tc:"#B71C1C",tb:"#FFEBEE"},
+  // Phase 2 ไทย
+  {f:"2027-01-01",to:"2027-01-10",id:"m14",e:"🪙",tx:"ติดตั้งตู้ซักผ้า + ตู้น้ำดื่ม (~200,000 บาท)",tg:"ลงทุน",tc:"#4A148C",tb:"#EDE7F6"},
+  {f:"2027-01-10",to:"2027-01-20",id:"m15",e:"💻",tx:"หางาน Remote Medical Billing (Indeed/LinkedIn/Upwork)",tg:"Billing",tc:"#4A148C",tb:"#EDE7F6",new:true},
+  {f:"2027-02-01",to:"2027-02-14",id:"m16",e:"🎓",tx:"เริ่มงาน Remote Medical Billing ✅",tg:"Billing",tc:"#4A148C",tb:"#EDE7F6",new:true},
+  {f:"2027-03-01",to:"2027-03-07",id:"m17",e:"🏥",tx:"สมัครหลักสูตร Pharmacy Tech แคนาดา (Anderson/Humber/Seneca)",tg:"PharmTech",tc:"#1B5E20",tb:"#E8F5E9",new:true},
+  {f:"2027-04-01",to:"2027-04-07",id:"m18",e:"📝",tx:"สอบ IELTS (เป้า 6.0+) สำหรับสมัคร Study/Work Permit",tg:"ทักษะ",tc:"#E65100",tb:"#FFF3E0"},
+  {f:"2027-06-01",to:"2027-06-07",id:"m19",e:"🛂",tx:"ยื่นขอ Study Permit แคนาดา (Pharmacy Tech)",tg:"PharmTech",tc:"#1B5E20",tb:"#E8F5E9",new:true},
+  {f:"2027-09-01",to:"2027-09-07",id:"m20",e:"📋",tx:"ตรวจประวัติอาชญากรรม (ใบ ป.106) + ตรวจสุขภาพ",tg:"เอกสาร",tc:"#0D47A1",tb:"#E3F2FD"},
+  {f:"2027-11-01",to:"2027-11-07",id:"m21",e:"🇨🇦",tx:"เตรียมตัวบินแคนาดา ม.ค. 2571",tg:"PharmTech",tc:"#1B5E20",tb:"#E8F5E9",new:true},
+  // Phase 3 แคนาดา
+  {f:"2028-01-01",to:"2028-01-10",id:"m22",e:"🛫",tx:"บินแคนาดา ✈️ เริ่มเรียน Pharmacy Technician",tg:"สำคัญ",tc:"#B71C1C",tb:"#FFEBEE"},
+  {f:"2028-06-01",to:"2028-06-07",id:"m23",e:"💊",tx:"ครึ่งทางหลักสูตร Pharmacy Tech — ทบทวนความก้าวหน้า",tg:"PharmTech",tc:"#1B5E20",tb:"#E8F5E9",new:true},
+  {f:"2028-09-01",to:"2028-09-07",id:"m24",e:"📝",tx:"สมัครสอบ PEBC Pharmacy Technician Exam",tg:"PharmTech",tc:"#1B5E20",tb:"#E8F5E9",new:true},
+  {f:"2028-11-01",to:"2028-11-07",id:"m25",e:"🏆",tx:"สอบ PEBC + ขึ้นทะเบียน Registered Pharmacy Technician",tg:"PharmTech",tc:"#1B5E20",tb:"#E8F5E9",new:true},
+  {f:"2028-12-01",to:"2028-12-07",id:"m26",e:"🇨🇦",tx:"ยื่น Express Entry Healthcare Category (PR) 🎉",tg:"PR",tc:"#B71C1C",tb:"#FFEBEE",new:true},
 ];
 
 const getMS=d=>MS.filter(m=>d>=m.f&&d<=m.to);
@@ -135,11 +145,12 @@ const tog=(d,id)=>{C[d+"_"+id]=!C[d+"_"+id];sv();render();};
 
 function card(task,d,cls=""){
   const ok=done(d,task.id);
-  return`<div class="task${cls?` ${cls}`:""} ${ok?"done":""}" onclick="tog('${d}','${task.id}')">
+  const extra=task.new?` <span style="background:#7B1FA2;color:#fff;font-size:9px;padding:1px 5px;border-radius:99px;font-weight:700">ใหม่</span>`:"";
+  return`<div class="task${cls?" "+cls:""} ${ok?"done":""}" onclick="tog('${d}','${task.id}')">
     <div class="chk${ok?" on":""}">${ok?"✓":""}</div>
-    <div class="tinfo">
-      <div class="ttxt${ok?" done":""}">${task.e||""} ${task.tx}</div>
-      <div class="tmeta">
+    <div class="ti">
+      <div class="tx${ok?" done":""}">${task.e||""} ${task.tx}${extra}</div>
+      <div class="meta">
         <span class="tag" style="background:${task.tb};color:${task.tc}">${task.tg}</span>
         ${task.t?`<span class="due">⏰ ${task.t}</span>`:""}
       </div>
@@ -148,22 +159,21 @@ function card(task,d,cls=""){
 }
 
 function render(){
-  const d=cur, isToday=d===TODAY;
+  const d=cur,isToday=d===TODAY;
   const obj=new Date(d);
-  const day=TH_D[obj.getDay()];
+  const day=THD[obj.getDay()];
   const isWE=obj.getDay()===0||obj.getDay()===6;
   const yr=obj.getFullYear()+543;
-  const ds=`${obj.getDate()} ${TH_M[obj.getMonth()]} ${yr}`;
 
-  document.getElementById("d-main").innerHTML=`${ds}${isToday?'<span class="today-pill">วันนี้</span>':""}`;
+  document.getElementById("d-main").innerHTML=
+    `${obj.getDate()} ${THM[obj.getMonth()]} ${yr}${isToday?'<span class="today-pill">วันนี้</span>':""}`;
   document.getElementById("d-sub").textContent=`วัน${day}${isWE?" 🎉 วันหยุด":""}`;
 
-  const ms=getMS(d), wk=getWK(d);
+  const ms=getMS(d),wk=getWK(d);
   const all=[...DAILY,...wk,...ms];
-  const tot=all.length, dn=all.filter(t=>done(d,t.id)).length;
+  const tot=all.length,dn=all.filter(t=>done(d,t.id)).length;
   const p=tot?Math.round(dn/tot*100):0;
   const pc=p>=80?"#4CAF50":p>=50?"#FF9800":"#F44336";
-
   document.getElementById("pfill").style.cssText=`width:${p}%;background:${pc}`;
   document.getElementById("ppct").textContent=p+"%";
   document.getElementById("psub").textContent=`✅ ${dn} / ${tot} งานวันนี้`;
@@ -172,8 +182,8 @@ function render(){
   if(!isToday) h+=`<button class="back-btn" onclick="goToday()">📅 กลับวันนี้</button>`;
 
   if(ms.length){
-    h+=`<div class="ms-banner"><div class="ms-title">🚨 MILESTONE ต้องทำสัปดาห์นี้!</div>`;
-    ms.forEach(m=>h+=`<div class="ms-item">${m.e} ${m.tx}</div>`);
+    h+=`<div class="ms-banner"><div class="ms-title">🚨 MILESTONE สัปดาห์นี้!</div>`;
+    ms.forEach(m=>h+=`<div class="ms-item">${m.e} ${m.tx}${m.new?' ⭐ ใหม่':''}</div>`);
     h+=`</div>`;
   }
 
@@ -181,31 +191,34 @@ function render(){
   DAILY.forEach(t=>h+=card(t,d));
 
   if(wk.length){
-    h+=`<hr class="divider"><div class="slabel">📅 งานประจำวัน${day}</div>`;
-    wk.forEach(t=>h+=card(t,d,"wk-card"));
+    h+=`<hr class="divider"><div class="slabel">📅 งานวัน${day}</div>`;
+    wk.forEach(t=>h+=card(t,d,"wk"));
   }
   if(ms.length){
-    h+=`<hr class="divider"><div class="slabel" style="color:#C62828">🚨 MILESTONE สัปดาห์นี้</div>`;
-    ms.forEach(t=>h+=card(t,d,"ms-card"));
+    const newMs=ms.filter(m=>m.new);
+    const oldMs=ms.filter(m=>!m.new);
+    if(newMs.length){
+      h+=`<hr class="divider"><div class="slabel" style="color:#7B1FA2">💊 งานใหม่ Medical Billing & Pharmacy</div>`;
+      newMs.forEach(t=>h+=card(t,d,"new"));
+    }
+    if(oldMs.length){
+      h+=`<hr class="divider"><div class="slabel" style="color:#C62828">🚨 MILESTONE</div>`;
+      oldMs.forEach(t=>h+=card(t,d,"ms"));
+    }
   }
 
   h+=`<hr class="divider">
-  <div class="note-wrap">
-    <button class="note-btn" onclick="toggleNote()">📝 ${N[d]?N[d].slice(0,38)+"...":"เพิ่มโน้ตประจำวัน..."}</button>
-    ${showNote?`<textarea class="note-area" id="na" placeholder="บันทึกรายได้ ความรู้สึก สิ่งที่เรียนรู้..." onchange="saveNote(this.value)">${N[d]||""}</textarea>`:""}
-  </div>`;
+  <button class="note-btn" onclick="toggleNote()">📝 ${N[d]?N[d].slice(0,38)+"...":"โน้ตประจำวัน..."}</button>
+  ${showNote?`<textarea class="note-area" id="na" placeholder="บันทึกรายได้ บทเรียน ความรู้สึก..." onchange="saveNote(this.value)">${N[d]||""}</textarea>`:""}`;
 
-  if(p===100) h+=`<div class="win-banner">
-    <div style="font-size:40px">🎉</div>
-    <div style="color:#fff;font-weight:900;font-size:18px;margin-top:8px">เสร็จหมดทุกงานวันนี้!</div>
-    <div style="color:rgba(255,255,255,.8);font-size:13px;margin-top:4px">ยอดเยี่ยมมาก! 💪</div>
-  </div>`;
+  if(p===100) h+=`<div class="win"><div style="font-size:36px">🎉</div>
+    <div style="color:#fff;font-weight:900;font-size:17px;margin-top:6px">เสร็จหมดทุกงานวันนี้!</div>
+    <div style="color:rgba(255,255,255,.8);font-size:12px;margin-top:4px">เก่งมาก! 💪</div></div>`;
 
-  h+=`<div class="foot">กดที่งานเพื่อติ๊ก ✅ กดอีกครั้งเพื่อยกเลิก<br>ข้อมูลบันทึกในเครื่องอัตโนมัติ</div>`;
+  h+=`<div class="foot">กดที่งานเพื่อติ๊ก ✅ กดอีกครั้งเพื่อยกเลิก<br>บันทึกในเครื่องอัตโนมัติ</div>`;
   document.getElementById("app").innerHTML=h;
   if(showNote) setTimeout(()=>{const el=document.getElementById("na");if(el)el.focus();},50);
 }
-
 function go(n){cur=shift(cur,n);render();}
 function goToday(){cur=TODAY;render();}
 function toggleNote(){showNote=!showNote;render();}
