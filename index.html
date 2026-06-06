@@ -61,7 +61,7 @@ body{background:#F0F4F7;font-family:-apple-system,'Noto Sans Thai',sans-serif;co
 <body>
 <div class="hdr">
   <div class="hdr-title">📋 Daily Check — Apasaraporn</div>
-  <div class="hdr-sub">Medical Billing → Pharmacy Tech → 🇨🇦 PR 2028</div>
+  <div class="hdr-sub">Finance Pro → Bookkeeping → 🇨🇦 PR 2028</div>
   <div class="date-nav">
     <button class="nbtn" onclick="go(-1)">‹</button>
     <div class="dbox">
@@ -89,53 +89,60 @@ const sv=()=>{try{localStorage.setItem("dc4",JSON.stringify(C));localStorage.set
 
 // ── DAILY TASKS ──
 const DAILY=[
-  {id:"d1",t:"10:00",e:"🌅",tx:"ตื่นนอน + Stretch 15 นาที",            tg:"สุขภาพ", tc:"#1B5E20",tb:"#E8F5E9"},
-  {id:"d2",t:"11:00",e:"📱",tx:"Reels & TikTok (ถ่าย/ตัด/โพส)",       tg:"รายได้", tc:"#BF360C",tb:"#FBE9E7"},
-  {id:"d3",t:"11:45",e:"🛍️",tx:"โพสขายสินค้าออนไลน์ + เช็คออเดอร์",  tg:"รายได้", tc:"#BF360C",tb:"#FBE9E7"},
-  {id:"d4",t:"12:15",e:"💊",tx:"เรียน Medical Billing 30 นาที (AAPC/Coursera)", tg:"Billing",tc:"#4A148C",tb:"#EDE7F6"},
-  {id:"d5",t:"12:45",e:"📚",tx:"เรียน Medical English 15 นาที",         tg:"ทักษะ",  tc:"#E65100",tb:"#FFF3E0"},
-  {id:"d6",t:"13:00",e:"💼",tx:"เตรียมตัวไปทำงาน",                     tg:"งาน",   tc:"#01579B",tb:"#E3F2FD"},
-  {id:"d7",t:"14:00",e:"💼",tx:"ทำงานหลัก (เกาหลี) 14:00–02:00",      tg:"งาน",   tc:"#01579B",tb:"#E3F2FD"},
-  {id:"d8",t:"20:00",e:"💰",tx:"บันทึกรายได้วันนี้ + โอนเงินออม",      tg:"การเงิน",tc:"#004D40",tb:"#E0F2F1"},
+  {id:"d1",t:"09:00",e:"🌅",tx:"ตื่นนอน + Stretch 15 นาที",                          tg:"สุขภาพ",  tc:"#1B5E20",tb:"#E8F5E9"},
+  {id:"d2",t:"09:30",e:"🎧",tx:"IELTS 60 นาที — Listening + Reading (ieltsliz.com)",  tg:"IELTS",   tc:"#E65100",tb:"#FFF3E0"},
+  {id:"d3",t:"10:30",e:"📊",tx:"QuickBooks / Xero 60 นาที (Intuit Academy / Xero Central)", tg:"Finance", tc:"#1565C0",tb:"#E3F2FD"},
+  {id:"d4",t:"11:30",e:"📱",tx:"Reels & TikTok (ถ่าย/ตัด/โพส)",                      tg:"รายได้",  tc:"#BF360C",tb:"#FBE9E7"},
+  {id:"d5",t:"12:00",e:"🛍️",tx:"โพสขายสินค้าออนไลน์ + เช็คออเดอร์",                 tg:"รายได้",  tc:"#BF360C",tb:"#FBE9E7"},
+  {id:"d6",t:"13:00",e:"💼",tx:"เตรียมตัวไปทำงาน",                                    tg:"งาน",     tc:"#01579B",tb:"#E3F2FD"},
+  {id:"d7",t:"14:00",e:"💼",tx:"ทำงานหลัก (เกาหลี) 14:00–02:00",                     tg:"งาน",     tc:"#01579B",tb:"#E3F2FD"},
+  {id:"d8",t:"20:00",e:"💰",tx:"บันทึกรายได้วันนี้ + โอนเงินออม",                    tg:"การเงิน", tc:"#004D40",tb:"#E0F2F1"},
 ];
 // ── WEEKLY ──
 const WK={
-  0:[{id:"w1",e:"💸",tx:"สรุปรายได้สัปดาห์ + อัปเดต Income Tracker",tg:"การเงิน",tc:"#004D40",tb:"#E0F2F1"},
-     {id:"w2",e:"🗓️",tx:"วางแผน Content + Hashtag สัปดาห์หน้า",      tg:"Social",  tc:"#880E4F",tb:"#FCE4EC"}],
-  6:[{id:"w3",e:"🎥",tx:"ถ่ายสต็อกคลิปหลายอันไว้ใช้สัปดาห์หน้า",   tg:"Social",  tc:"#880E4F",tb:"#FCE4EC"},
-     {id:"w4",e:"📝",tx:"ทบทวนบทเรียน Medical Billing สัปดาห์นี้",   tg:"Billing", tc:"#4A148C",tb:"#EDE7F6"}],
+  0:[{id:"w1",e:"💸",tx:"สรุปรายได้สัปดาห์ + อัปเดต Income Tracker",           tg:"การเงิน",tc:"#004D40",tb:"#E0F2F1"},
+     {id:"w2",e:"🗓️",tx:"วางแผน Content + Hashtag สัปดาห์หน้า",                tg:"Social",  tc:"#880E4F",tb:"#FCE4EC"},
+     {id:"w5",e:"📖",tx:"ทบทวน Finance / Bookkeeping บทเรียนสัปดาห์นี้",       tg:"Finance", tc:"#1565C0",tb:"#E3F2FD"}],
+  5:[{id:"f1",e:"📝",tx:"ทำ IELTS Mock Test เต็มชุด (examenglish.com)",          tg:"IELTS",   tc:"#E65100",tb:"#FFF3E0"},
+     {id:"f2",e:"📊",tx:"เรียน Finance เพิ่ม 2 ชั่วโมง (วันหยุดพิเศษ)",        tg:"Finance", tc:"#1565C0",tb:"#E3F2FD"},
+     {id:"f3",e:"🎥",tx:"ถ่ายคลิป + ตัดต่อ Content สต็อกไว้ล่วงหน้า",         tg:"Social",  tc:"#880E4F",tb:"#FCE4EC"},
+     {id:"f4",e:"🌿",tx:"พักผ่อน / ออกไปข้างนอก / Recharge",                   tg:"สุขภาพ",  tc:"#1B5E20",tb:"#E8F5E9"}],
+  6:[{id:"w3",e:"🎥",tx:"ถ่ายสต็อกคลิปหลายอันไว้ใช้สัปดาห์หน้า",             tg:"Social",  tc:"#880E4F",tb:"#FCE4EC"},
+     {id:"w4",e:"📝",tx:"ทำ Practice IELTS Mock Test 1 ชุด (examenglish.com)",  tg:"IELTS",   tc:"#E65100",tb:"#FFF3E0"},
+     {id:"w6",e:"💼",tx:"อัปเดต LinkedIn + Fiverr Profile (Finance/Bookkeeping)",tg:"Finance", tc:"#1565C0",tb:"#E3F2FD"}],
 };
 // ── MILESTONES (เดิม + ใหม่) ──
 const MS=[
-  // Phase 1 เกาหลี
-  {f:"2026-06-01",to:"2026-06-07",id:"m1",e:"🛂",tx:"ต่ออายุพาสปอร์ต (เหลือ < 3 ปี)",tg:"เอกสาร",tc:"#0D47A1",tb:"#E3F2FD"},
-  {f:"2026-06-01",to:"2026-06-07",id:"m2",e:"📄",tx:"แปลวุฒิ + ประวัติทำงานเป็นอังกฤษ",tg:"เอกสาร",tc:"#0D47A1",tb:"#E3F2FD"},
-  {f:"2026-06-01",to:"2026-06-07",id:"m3",e:"🌐",tx:"ลงทะเบียน toea.doe.go.th",tg:"ต่างประเทศ",tc:"#1B5E20",tb:"#E8F5E9"},
-  {f:"2026-06-01",to:"2026-06-07",id:"m4",e:"💊",tx:"สมัคร AAPC Membership + เริ่มคอร์ส CPB",tg:"Billing",tc:"#4A148C",tb:"#EDE7F6",new:true},
-  {f:"2026-06-01",to:"2026-06-07",id:"m5",e:"🎓",tx:"สมัคร iTalki + Preply + เปิด TikTok",tg:"รายได้",tc:"#BF360C",tb:"#FBE9E7"},
-  {f:"2026-06-15",to:"2026-06-18",id:"m6",e:"📞",tx:"โทร 1506 กด 2 สอบถามงาน Caregiver",tg:"ต่างประเทศ",tc:"#1B5E20",tb:"#E8F5E9"},
-  {f:"2026-07-01",to:"2026-07-07",id:"m7",e:"🪙",tx:"สำรวจทำเลตู้ซักผ้า (ให้คนในบ้านช่วย)",tg:"ลงทุน",tc:"#4A148C",tb:"#EDE7F6"},
-  {f:"2026-08-01",to:"2026-08-07",id:"m8",e:"📊",tx:"ประเมินรายได้เสริม 3 เดือน + ปรับแผน",tg:"การเงิน",tc:"#004D40",tb:"#E0F2F1"},
-  {f:"2026-09-01",to:"2026-09-07",id:"m9",e:"💊",tx:"จ่ายค่าสอบ CPB ($399) + จองวันสอบ",tg:"Billing",tc:"#4A148C",tb:"#EDE7F6",new:true},
-  {f:"2026-10-01",to:"2026-10-07",id:"m10",e:"📝",tx:"สอบ CPB Exam (Certified Professional Biller) ✅",tg:"Billing",tc:"#4A148C",tb:"#EDE7F6",new:true},
-  {f:"2026-11-01",to:"2026-11-07",id:"m11",e:"🔍",tx:"ศึกษาหลักสูตร Pharmacy Tech ในแคนาดา",tg:"PharmTech",tc:"#1B5E20",tb:"#E8F5E9",new:true},
-  {f:"2026-12-01",to:"2026-12-07",id:"m12",e:"🏦",tx:"ปิดบัญชีเกาหลี โอนเงินกลับไทยทั้งหมด",tg:"การเงิน",tc:"#004D40",tb:"#E0F2F1"},
-  {f:"2026-12-20",to:"2026-12-31",id:"m13",e:"🇹🇭",tx:"กลับไทย!",tg:"สำคัญ",tc:"#B71C1C",tb:"#FFEBEE"},
-  // Phase 2 ไทย
-  {f:"2027-01-01",to:"2027-01-10",id:"m14",e:"🪙",tx:"ติดตั้งตู้ซักผ้า + ตู้น้ำดื่ม (~200,000 บาท)",tg:"ลงทุน",tc:"#4A148C",tb:"#EDE7F6"},
-  {f:"2027-01-10",to:"2027-01-20",id:"m15",e:"💻",tx:"หางาน Remote Medical Billing (Indeed/LinkedIn/Upwork)",tg:"Billing",tc:"#4A148C",tb:"#EDE7F6",new:true},
-  {f:"2027-02-01",to:"2027-02-14",id:"m16",e:"🎓",tx:"เริ่มงาน Remote Medical Billing ✅",tg:"Billing",tc:"#4A148C",tb:"#EDE7F6",new:true},
-  {f:"2027-03-01",to:"2027-03-07",id:"m17",e:"🏥",tx:"สมัครหลักสูตร Pharmacy Tech แคนาดา (Anderson/Humber/Seneca)",tg:"PharmTech",tc:"#1B5E20",tb:"#E8F5E9",new:true},
-  {f:"2027-04-01",to:"2027-04-07",id:"m18",e:"📝",tx:"สอบ IELTS (เป้า 6.0+) สำหรับสมัคร Study/Work Permit",tg:"ทักษะ",tc:"#E65100",tb:"#FFF3E0"},
-  {f:"2027-06-01",to:"2027-06-07",id:"m19",e:"🛂",tx:"ยื่นขอ Study Permit แคนาดา (Pharmacy Tech)",tg:"PharmTech",tc:"#1B5E20",tb:"#E8F5E9",new:true},
-  {f:"2027-09-01",to:"2027-09-07",id:"m20",e:"📋",tx:"ตรวจประวัติอาชญากรรม (ใบ ป.106) + ตรวจสุขภาพ",tg:"เอกสาร",tc:"#0D47A1",tb:"#E3F2FD"},
-  {f:"2027-11-01",to:"2027-11-07",id:"m21",e:"🇨🇦",tx:"เตรียมตัวบินแคนาดา ม.ค. 2571",tg:"PharmTech",tc:"#1B5E20",tb:"#E8F5E9",new:true},
-  // Phase 3 แคนาดา
-  {f:"2028-01-01",to:"2028-01-10",id:"m22",e:"🛫",tx:"บินแคนาดา ✈️ เริ่มเรียน Pharmacy Technician",tg:"สำคัญ",tc:"#B71C1C",tb:"#FFEBEE"},
-  {f:"2028-06-01",to:"2028-06-07",id:"m23",e:"💊",tx:"ครึ่งทางหลักสูตร Pharmacy Tech — ทบทวนความก้าวหน้า",tg:"PharmTech",tc:"#1B5E20",tb:"#E8F5E9",new:true},
-  {f:"2028-09-01",to:"2028-09-07",id:"m24",e:"📝",tx:"สมัครสอบ PEBC Pharmacy Technician Exam",tg:"PharmTech",tc:"#1B5E20",tb:"#E8F5E9",new:true},
-  {f:"2028-11-01",to:"2028-11-07",id:"m25",e:"🏆",tx:"สอบ PEBC + ขึ้นทะเบียน Registered Pharmacy Technician",tg:"PharmTech",tc:"#1B5E20",tb:"#E8F5E9",new:true},
-  {f:"2028-12-01",to:"2028-12-07",id:"m26",e:"🇨🇦",tx:"ยื่น Express Entry Healthcare Category (PR) 🎉",tg:"PR",tc:"#B71C1C",tb:"#FFEBEE",new:true},
+  // Phase 1 — เกาหลี (Foundation)
+  {f:"2026-06-01",to:"2026-06-07",id:"m1",e:"🛂",tx:"ต่ออายุพาสปอร์ต (เหลือ < 3 ปี)",                         tg:"เอกสาร",  tc:"#0D47A1",tb:"#E3F2FD"},
+  {f:"2026-06-01",to:"2026-06-07",id:"m2",e:"📄",tx:"แปลวุฒิ + ประวัติทำงานเป็นอังกฤษ",                       tg:"เอกสาร",  tc:"#0D47A1",tb:"#E3F2FD"},
+  {f:"2026-06-01",to:"2026-06-07",id:"m3",e:"🌐",tx:"ลงทะเบียน toea.doe.go.th",                               tg:"ต่างประเทศ",tc:"#1B5E20",tb:"#E8F5E9"},
+  {f:"2026-06-01",to:"2026-06-07",id:"m4",e:"📊",tx:"สมัคร Intuit Academy + เริ่ม QuickBooks Online Cert",    tg:"Finance", tc:"#1565C0",tb:"#E3F2FD",new:true},
+  {f:"2026-06-01",to:"2026-06-07",id:"m5",e:"🎓",tx:"สมัคร iTalki + Preply + เปิด TikTok",                   tg:"รายได้",  tc:"#BF360C",tb:"#FBE9E7"},
+  {f:"2026-06-15",to:"2026-06-21",id:"m6",e:"📚",tx:"สมัคร Xero Central + เริ่ม Xero Advisor Cert (ฟรี)",    tg:"Finance", tc:"#1565C0",tb:"#E3F2FD",new:true},
+  {f:"2026-07-01",to:"2026-07-07",id:"m7",e:"🏆",tx:"สอบผ่าน QuickBooks Online Certified ✅",                  tg:"Finance", tc:"#1565C0",tb:"#E3F2FD",new:true},
+  {f:"2026-07-15",to:"2026-07-21",id:"m8",e:"🏆",tx:"สอบผ่าน Xero Advisor Certified ✅",                      tg:"Finance", tc:"#1565C0",tb:"#E3F2FD",new:true},
+  {f:"2026-08-01",to:"2026-08-07",id:"m9",e:"📊",tx:"เริ่ม CFI Bookkeeping Course (corporatefinanceinstitute.com)", tg:"Finance",tc:"#1565C0",tb:"#E3F2FD",new:true},
+  {f:"2026-08-01",to:"2026-08-07",id:"m10",e:"📝",tx:"ลงทะเบียนสอบ IELTS (เป้าสอบ พ.ย. 2026)",               tg:"IELTS",  tc:"#E65100",tb:"#FFF3E0",new:true},
+  {f:"2026-09-01",to:"2026-09-07",id:"m11",e:"💼",tx:"สร้าง Portfolio Bookkeeping 3 ชิ้น (จำลอง)",            tg:"Finance", tc:"#1565C0",tb:"#E3F2FD",new:true},
+  {f:"2026-09-15",to:"2026-09-21",id:"m12",e:"🌐",tx:"เปิดโปรไฟล์ Fiverr + Upwork (Finance/Bookkeeping)",    tg:"Finance", tc:"#1565C0",tb:"#E3F2FD",new:true},
+  {f:"2026-08-01",to:"2026-08-07",id:"m13",e:"📝",tx:"สอบ IELTS — เป้า 6.5+ 🎯",                                tg:"IELTS",  tc:"#E65100",tb:"#FFF3E0",new:true},
+  {f:"2026-09-01",to:"2026-09-07",id:"m14",e:"🏦",tx:"ปิดบัญชีเกาหลี โอนเงินกลับไทยทั้งหมด",                tg:"การเงิน", tc:"#004D40",tb:"#E0F2F1"},
+  {f:"2026-09-14",to:"2026-09-21",id:"m15",e:"🇹🇭",tx:"กลับไทย! ✈️ 21 กันยายน 2026 🎉",                          tg:"สำคัญ",  tc:"#B71C1C",tb:"#FFEBEE"},
+  // Phase 2 — ไทย (Build Income)
+  {f:"2027-01-01",to:"2027-01-10",id:"m16",e:"🪙",tx:"ติดตั้งตู้ซักผ้า + ตู้น้ำดื่ม (~200,000 บาท)",        tg:"ลงทุน",  tc:"#4A148C",tb:"#EDE7F6"},
+  {f:"2027-01-10",to:"2027-01-20",id:"m17",e:"💼",tx:"รับลูกค้า Bookkeeping ไทยรายแรก (Fiverr/Facebook)",    tg:"Finance", tc:"#1565C0",tb:"#E3F2FD",new:true},
+  {f:"2027-02-01",to:"2027-02-14",id:"m18",e:"💰",tx:"เป้า: ลูกค้า 3 ราย = 24,000 บาท/เดือน",               tg:"Finance", tc:"#1565C0",tb:"#E3F2FD",new:true},
+  {f:"2027-03-01",to:"2027-03-07",id:"m19",e:"🌍",tx:"เริ่มหาลูกค้าต่างชาติใน Upwork (eCommerce Bookkeeping)",tg:"Finance",tc:"#1565C0",tb:"#E3F2FD",new:true},
+  {f:"2027-04-01",to:"2027-04-07",id:"m20",e:"🎓",tx:"เริ่มเรียน Accounting Diploma ออนไลน์ (สำหรับ NOC 12200 แคนาดา)", tg:"Finance",tc:"#1565C0",tb:"#E3F2FD",new:true},
+  {f:"2027-06-01",to:"2027-06-07",id:"m21",e:"💰",tx:"เป้า: ลูกค้า 5 ราย = 40,000 บาท/เดือน ✅",            tg:"Finance", tc:"#1565C0",tb:"#E3F2FD",new:true},
+  {f:"2027-08-01",to:"2027-08-07",id:"m22",e:"🇨🇦",tx:"ยื่น Express Entry Profile + สมัคร Saskatchewan/Manitoba PNP", tg:"PR",tc:"#B71C1C",tb:"#FFEBEE",new:true},
+  {f:"2027-10-01",to:"2027-10-07",id:"m23",e:"📋",tx:"ตรวจประวัติอาชญากรรม (ใบ ป.106) + ตรวจสุขภาพ",        tg:"เอกสาร", tc:"#0D47A1",tb:"#E3F2FD"},
+  // Phase 3 — แคนาดา (PR Pathway)
+  {f:"2028-01-01",to:"2028-01-10",id:"m24",e:"🛫",tx:"บินแคนาดา ✈️ เริ่มทำงาน Bookkeeper/Accounting Tech",   tg:"สำคัญ",  tc:"#B71C1C",tb:"#FFEBEE"},
+  {f:"2028-06-01",to:"2028-06-07",id:"m25",e:"📊",tx:"ครบ 6 เดือน Canadian Work Experience — เช็คคะแนน CRS", tg:"PR",     tc:"#B71C1C",tb:"#FFEBEE",new:true},
+  {f:"2028-09-01",to:"2028-09-07",id:"m26",e:"🎓",tx:"เริ่มเรียน CPA PEP (Chartered Professional Accountant)", tg:"Finance",tc:"#1565C0",tb:"#E3F2FD",new:true},
+  {f:"2028-12-01",to:"2028-12-07",id:"m27",e:"🇨🇦",tx:"ยื่น Express Entry PR (NOC 12200) 🎉",                tg:"PR",     tc:"#B71C1C",tb:"#FFEBEE",new:true},
 ];
 
 const getMS=d=>MS.filter(m=>d>=m.f&&d<=m.to);
@@ -162,15 +169,17 @@ function render(){
   const d=cur,isToday=d===TODAY;
   const obj=new Date(d);
   const day=THD[obj.getDay()];
-  const isWE=obj.getDay()===0||obj.getDay()===6;
+  const isWE=obj.getDay()===0||obj.getDay()===5||obj.getDay()===6;
   const yr=obj.getFullYear()+543;
 
   document.getElementById("d-main").innerHTML=
     `${obj.getDate()} ${THM[obj.getMonth()]} ${yr}${isToday?'<span class="today-pill">วันนี้</span>':""}`;
   document.getElementById("d-sub").textContent=`วัน${day}${isWE?" 🎉 วันหยุด":""}`;
 
+  const isFri=obj.getDay()===5;
   const ms=getMS(d),wk=getWK(d);
-  const all=[...DAILY,...wk,...ms];
+  const dailyForCount=isFri?DAILY.filter(t=>t.id!=="d6"&&t.id!=="d7"):DAILY;
+  const all=[...dailyForCount,...wk,...ms];
   const tot=all.length,dn=all.filter(t=>done(d,t.id)).length;
   const p=tot?Math.round(dn/tot*100):0;
   const pc=p>=80?"#4CAF50":p>=50?"#FF9800":"#F44336";
@@ -188,7 +197,8 @@ function render(){
   }
 
   h+=`<div class="slabel">📋 งานประจำวัน</div>`;
-  DAILY.forEach(t=>h+=card(t,d));
+  const dailyShow=isFri?DAILY.filter(t=>t.id!=="d6"&&t.id!=="d7"):DAILY;
+  dailyShow.forEach(t=>h+=card(t,d));
 
   if(wk.length){
     h+=`<hr class="divider"><div class="slabel">📅 งานวัน${day}</div>`;
@@ -198,7 +208,7 @@ function render(){
     const newMs=ms.filter(m=>m.new);
     const oldMs=ms.filter(m=>!m.new);
     if(newMs.length){
-      h+=`<hr class="divider"><div class="slabel" style="color:#7B1FA2">💊 งานใหม่ Medical Billing & Pharmacy</div>`;
+      h+=`<hr class="divider"><div class="slabel" style="color:#7B1FA2">📊 งานใหม่ Finance & IELTS</div>`;
       newMs.forEach(t=>h+=card(t,d,"new"));
     }
     if(oldMs.length){
