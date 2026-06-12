@@ -26,24 +26,23 @@ body{background:#F0F4F7;font-family:-apple-system,'Noto Sans Thai',sans-serif;co
 .prog-sub{color:rgba(255,255,255,.6);font-size:10px;margin-top:3px}
 .body{padding:12px 12px 0}
 .back-btn{width:100%;background:#fff;border:2px solid #0E7C86;border-radius:11px;padding:9px;color:#0E7C86;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:12px;font-family:inherit}
-.slabel{font-size:10px;font-weight:700;letter-spacing:2px;color:#888;margin:12px 0 7px}
+.slabel{font-size:10px;font-weight:700;letter-spacing:1.5px;color:#888;margin:12px 0 7px;text-transform:uppercase}
 .task{background:#fff;border:1.5px solid #E5E5E5;border-radius:13px;padding:12px 14px;margin-bottom:7px;display:flex;align-items:flex-start;gap:12px;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.05);-webkit-user-select:none;user-select:none}
 .task.done{background:#F4FBF4;border-color:#A5D6A7}
 .task.ms{background:#FFF8F8;border-color:#FFCDD2}
-.task.ms.done{background:#F4FBF4;border-color:#A5D6A7}
-.task.wk{background:#FFFDE7;border-color:#FFE082}
-.task.wk.done{background:#F4FBF4;border-color:#A5D6A7}
-.task.new{background:#F3E5F5;border-color:#CE93D8}
-.task.new.done{background:#F4FBF4;border-color:#A5D6A7}
+.task.ms.done,.task.night.done,.task.fri.done,.task.ielts.done{background:#F4FBF4;border-color:#A5D6A7}
+.task.fri{background:#FFF3E0;border-color:#FFB74D}
+.task.night{background:#EDE7F6;border-color:#CE93D8}
+.task.ielts{background:#E3F2FD;border-color:#90CAF9}
 .chk{width:26px;height:26px;flex-shrink:0;border-radius:50%;border:2px solid #CCC;background:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff;font-weight:900;transition:all .2s;margin-top:1px}
 .chk.on{background:#4CAF50;border-color:#4CAF50}
 .ti{flex:1;min-width:0}
 .tx{font-size:14px;font-weight:700;color:#111;line-height:1.4;margin-bottom:5px;word-break:break-word}
 .tx.done{color:#AAA;text-decoration:line-through;font-weight:400}
+.tx-detail{font-size:11px;color:#666;margin-bottom:5px;line-height:1.5}
 .meta{display:flex;flex-wrap:wrap;gap:5px}
 .tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:99px}
 .due{font-size:10px;color:#AAA;background:#F5F5F5;padding:2px 8px;border-radius:99px}
-.mspill{font-size:10px;background:#FFEBEE;color:#C62828;padding:2px 8px;border-radius:99px;font-weight:700}
 .ms-banner{background:#FFF3F3;border:1.5px solid #FFCDD2;border-radius:13px;padding:11px 14px;margin-bottom:12px}
 .ms-title{color:#C62828;font-size:11px;font-weight:700;margin-bottom:5px}
 .ms-item{color:#333;font-size:12px;margin-bottom:2px}
@@ -52,16 +51,13 @@ body{background:#F0F4F7;font-family:-apple-system,'Noto Sans Thai',sans-serif;co
 .note-btn{width:100%;background:#fff;border:1.5px dashed #CCC;border-radius:13px;padding:11px 14px;color:#AAA;font-size:13px;cursor:pointer;text-align:left;font-family:inherit;display:flex;align-items:center;gap:8px}
 .note-area{width:100%;background:#fff;border:1.5px solid #CCC;border-radius:13px;padding:12px 14px;color:#111;font-size:13px;resize:vertical;min-height:85px;outline:none;font-family:inherit;margin-top:6px}
 .foot{text-align:center;color:#CCC;font-size:10px;padding:8px 0 16px}
-.phase-bar{display:flex;gap:6px;overflow-x:auto;margin-bottom:2px;padding-bottom:2px}
-.phase-bar::-webkit-scrollbar{display:none}
-.pbtn{flex-shrink:0;border:2px solid #ddd;border-radius:99px;padding:4px 12px;background:#fff;cursor:pointer;font-size:11px;font-weight:700;color:#888;font-family:inherit}
-.pbtn.on{border-color:#0E7C86;background:#0E7C86;color:#fff}
+.day-banner{border-radius:12px;padding:10px 14px;margin-bottom:12px;font-size:12px;font-weight:700;line-height:1.5}
 </style>
 </head>
 <body>
 <div class="hdr">
   <div class="hdr-title">📋 Daily Check — Apasaraporn</div>
-  <div class="hdr-sub">Finance Pro → Bookkeeping → 🇨🇦 PR 2028</div>
+  <div class="hdr-sub">IELTS → PSW → 🇨🇦 PR 2028</div>
   <div class="date-nav">
     <button class="nbtn" onclick="go(-1)">‹</button>
     <div class="dbox">
@@ -84,79 +80,130 @@ const fmt=d=>d.toISOString().slice(0,10);
 const shift=(s,n)=>{const d=new Date(s);d.setDate(d.getDate()+n);return fmt(d);};
 const TODAY=fmt(new Date());
 let cur=TODAY,C={},N={},showNote=false;
-try{C=JSON.parse(localStorage.getItem("dc4")||"{}");N=JSON.parse(localStorage.getItem("dn4")||"{}");}catch(e){}
-const sv=()=>{try{localStorage.setItem("dc4",JSON.stringify(C));localStorage.setItem("dn4",JSON.stringify(N));}catch(e){}};
+try{C=JSON.parse(localStorage.getItem("dc5")||"{}");N=JSON.parse(localStorage.getItem("dn5")||"{}");}catch(e){}
+const sv=()=>{try{localStorage.setItem("dc5",JSON.stringify(C));localStorage.setItem("dn5",JSON.stringify(N));}catch(e){}};
 
-// ── DAILY TASKS ──
-const DAILY=[
-  {id:"d1",t:"09:00",e:"🌅",tx:"ตื่นนอน + Stretch 15 นาที",                          tg:"สุขภาพ",  tc:"#1B5E20",tb:"#E8F5E9"},
-  {id:"d2",t:"09:30",e:"🎧",tx:"IELTS 60 นาที — Listening + Reading (ieltsliz.com)",  tg:"IELTS",   tc:"#E65100",tb:"#FFF3E0"},
-  {id:"d3",t:"10:30",e:"📊",tx:"QuickBooks / Xero 60 นาที (Intuit Academy / Xero Central)", tg:"Finance", tc:"#1565C0",tb:"#E3F2FD"},
-  {id:"d4",t:"11:30",e:"📱",tx:"Reels & TikTok (ถ่าย/ตัด/โพส)",                      tg:"รายได้",  tc:"#BF360C",tb:"#FBE9E7"},
-  {id:"d5",t:"12:00",e:"🛍️",tx:"โพสขายสินค้าออนไลน์ + เช็คออเดอร์",                 tg:"รายได้",  tc:"#BF360C",tb:"#FBE9E7"},
-  {id:"d6",t:"13:00",e:"💼",tx:"เตรียมตัวไปทำงาน",                                    tg:"งาน",     tc:"#01579B",tb:"#E3F2FD"},
-  {id:"d7",t:"14:00",e:"💼",tx:"ทำงานหลัก (เกาหลี) 14:00–02:00",                     tg:"งาน",     tc:"#01579B",tb:"#E3F2FD"},
-  {id:"d8",t:"20:00",e:"💰",tx:"บันทึกรายได้วันนี้ + โอนเงินออม",                    tg:"การเงิน", tc:"#004D40",tb:"#E0F2F1"},
+// ── NIGHT TASKS (เหมือนกันทุกวัน)
+const NIGHT=[
+  {id:"n1",t:"02:00",e:"🚿",tx:"เลิกงาน → อาบน้ำ",tg:"กลางคืน",tc:"#4A148C",tb:"#EDE7F6",detail:""},
+  {id:"n2",t:"02:30",e:"🤖",tx:"หาข้อมูลงาน AI 30 นาที",tg:"AI Jobs",tc:"#0D47A1",tb:"#E3F2FD",detail:"ค้น: Remote AI jobs Thailand, AI data annotation, Outlier.ai, Appen, Clickworker"},
+  {id:"n3",t:"03:00",e:"😴",tx:"นอน ตี 3",tg:"กลางคืน",tc:"#4A148C",tb:"#EDE7F6",detail:""},
 ];
-// ── WEEKLY ──
-const WK={
-  0:[{id:"w1",e:"💸",tx:"สรุปรายได้สัปดาห์ + อัปเดต Income Tracker",           tg:"การเงิน",tc:"#004D40",tb:"#E0F2F1"},
-     {id:"w2",e:"🗓️",tx:"วางแผน Content + Hashtag สัปดาห์หน้า",                tg:"Social",  tc:"#880E4F",tb:"#FCE4EC"},
-     {id:"w5",e:"📖",tx:"ทบทวน Finance / Bookkeeping บทเรียนสัปดาห์นี้",       tg:"Finance", tc:"#1565C0",tb:"#E3F2FD"}],
-  5:[{id:"f1",e:"📝",tx:"ทำ IELTS Mock Test เต็มชุด (examenglish.com)",          tg:"IELTS",   tc:"#E65100",tb:"#FFF3E0"},
-     {id:"f2",e:"📊",tx:"เรียน Finance เพิ่ม 2 ชั่วโมง (วันหยุดพิเศษ)",        tg:"Finance", tc:"#1565C0",tb:"#E3F2FD"},
-     {id:"f3",e:"🎥",tx:"ถ่ายคลิป + ตัดต่อ Content สต็อกไว้ล่วงหน้า",         tg:"Social",  tc:"#880E4F",tb:"#FCE4EC"},
-     {id:"f4",e:"🌿",tx:"พักผ่อน / ออกไปข้างนอก / Recharge",                   tg:"สุขภาพ",  tc:"#1B5E20",tb:"#E8F5E9"}],
-  6:[{id:"w3",e:"🎥",tx:"ถ่ายสต็อกคลิปหลายอันไว้ใช้สัปดาห์หน้า",             tg:"Social",  tc:"#880E4F",tb:"#FCE4EC"},
-     {id:"w4",e:"📝",tx:"ทำ Practice IELTS Mock Test 1 ชุด (examenglish.com)",  tg:"IELTS",   tc:"#E65100",tb:"#FFF3E0"},
-     {id:"w6",e:"💼",tx:"อัปเดต LinkedIn + Fiverr Profile (Finance/Bookkeeping)",tg:"Finance", tc:"#1565C0",tb:"#E3F2FD"}],
+
+// ── เช้า + งาน (เหมือนกันทุกวันยกเว้นศุกร์)
+function getMorning(ieltsTask){
+  return [
+    {id:"a1",t:"10:00",e:"⏰",tx:"ตื่นนอน 10 โมง",tg:"เช้า",tc:"#1B5E20",tb:"#E8F5E9",detail:""},
+    {id:"a2",t:"10:05",e:"📊",tx:"เช็คราคาทอง (Gold Now) 15 นาที",tg:"การเงิน",tc:"#004D40",tb:"#E0F2F1",detail:""},
+    ...ieltsTask,
+    {id:"a9",t:"11:45",e:"☕",tx:"พักผ่อน + กินข้าว",tg:"พัก",tc:"#5D4037",tb:"#EFEBE9",detail:""},
+    {id:"a10",t:"13:00",e:"💼",tx:"เตรียมตัวไปทำงาน",tg:"งาน",tc:"#01579B",tb:"#E3F2FD",detail:""},
+    {id:"a11",t:"14:00",e:"💼",tx:"ทำงานหลัก 14:00–02:00",tg:"งาน",tc:"#01579B",tb:"#E3F2FD",detail:""},
+  ];
+}
+
+// ── IELTS tasks แต่ละวัน
+const IELTS = {
+  // เสาร์ = Listening
+  6:[
+    {id:"i1",t:"10:15",e:"🎧",tx:"YouTube E2 IELTS — Listening Tips (20 นาที)",tg:"IELTS Listening",tc:"#0D47A1",tb:"#E3F2FD",
+     detail:'เปิด YouTube → ค้น "IELTS Listening Tips Section 1 2 3 4" → ดู 1 วิดีโอ เรียนเทคนิคก่อน'},
+    {id:"i2",t:"10:35",e:"📻",tx:"ทำข้อสอบ Listening 1 ชุด จับเวลา 30 นาที (40 นาที)",tg:"IELTS Listening",tc:"#0D47A1",tb:"#E3F2FD",
+     detail:"ieltsonlinetests.com → General Training → Listening → ทำ 40 ข้อ จับเวลา 30 นาที"},
+    {id:"i3",t:"11:15",e:"✅",tx:"เฉลย + ฟังซ้ำจุดที่ผิด (30 นาที)",tg:"IELTS Listening",tc:"#0D47A1",tb:"#E3F2FD",
+     detail:"เฉลยตัวเอง → จดว่าพลาดตรงไหน → ฟังซ้ำตรงที่ผิด ทำความเข้าใจ"},
+  ],
+  // อาทิตย์ = Reading
+  0:[
+    {id:"i1",t:"10:15",e:"📖",tx:"ieltsliz.com — อ่านเทคนิค Reading 1 อัน (10 นาที)",tg:"IELTS Reading",tc:"#1B5E20",tb:"#E8F5E9",
+     detail:'เปิด ieltsliz.com > Reading → อ่าน 1 เทคนิค เช่น "Matching Headings" หรือ "True/False/Not Given"'},
+    {id:"i2",t:"10:25",e:"📰",tx:"ทำข้อสอบ Reading 1 passage (50 นาที)",tg:"IELTS Reading",tc:"#1B5E20",tb:"#E8F5E9",
+     detail:"ieltsonlinetests.com → General Training → Reading → ทำ Sections 1+2 หรือ Section 3"},
+    {id:"i3",t:"11:15",e:"✅",tx:"เฉลย + จดคำศัพท์ใหม่ลง Anki (30 นาที)",tg:"IELTS Reading",tc:"#1B5E20",tb:"#E8F5E9",
+     detail:"ขีดเส้นใต้ใน text ว่าคำตอบอยู่ที่ไหน → จดคำศัพท์ใหม่ที่เจอลง Anki"},
+  ],
+  // จันทร์ = Writing Task 1
+  1:[
+    {id:"i1",t:"10:15",e:"✍️",tx:"ieltsliz.com — ดูตัวอย่าง Writing Task 1 Band 6 vs 7 (15 นาที)",tg:"IELTS Writing 1",tc:"#880E4F",tb:"#FCE4EC",
+     detail:"เปิด ieltsliz.com > Writing Task 1 → อ่านตัวอย่าง Band 6 และ Band 7 เปรียบเทียบกัน"},
+    {id:"i2",t:"10:30",e:"📝",tx:"เขียน Writing Task 1 ≥150 คำ จับเวลา 20 นาที (35 นาที)",tg:"IELTS Writing 1",tc:"#880E4F",tb:"#FCE4EC",
+     detail:"เลือกโจทย์จาก ieltsliz.com หรือ ieltsonlinetests.com → เขียนบน Notes app ให้ครบ 150 คำ"},
+    {id:"i3",t:"11:05",e:"🤖",tx:'ChatGPT เช็คงาน + แก้ไข (40 นาที)',tg:"IELTS Writing 1",tc:"#880E4F",tb:"#FCE4EC",
+     detail:'Copy งานไป ChatGPT → พิมพ์: "I\'m preparing for IELTS General Training. Please grade my Writing Task 1 by band score (Task Achievement, Coherence, Lexical Resource, Grammar). Point out specific mistakes and suggest corrections." → แก้ไขตาม feedback + เขียนใหม่ 1 รอบ'},
+  ],
+  // อังคาร = Speaking
+  2:[
+    {id:"i1",t:"10:15",e:"🗣️",tx:"ieltsliz.com — อ่าน Speaking Part 1 Sample Band 6-7 (15 นาที)",tg:"IELTS Speaking",tc:"#E65100",tb:"#FFF3E0",
+     detail:"เปิด ieltsliz.com > Speaking → อ่าน Part 1 sample answers Band 6-7 → สังเกต connector: because, however, although"},
+    {id:"i2",t:"10:30",e:"🎙️",tx:"ELSA Speak + ฝึกตอบ Part 1 + บันทึกเสียง (30 นาที)",tg:"IELTS Speaking",tc:"#E65100",tb:"#FFF3E0",
+     detail:"เปิด ELSA Speak → ฝึก Pronunciation 15 นาที → ฝึกตอบ Part 1 topic (Work, Hobbies, Food) → บันทึกเสียงด้วย Voice Memo"},
+    {id:"i3",t:"11:00",e:"🎬",tx:"YouTube E2 IELTS — ฝึก Speaking Part 2 พูด 2 นาที (45 นาที)",tg:"IELTS Speaking",tc:"#E65100",tb:"#FFF3E0",
+     detail:'YouTube → ค้น "IELTS Speaking Part 2 Practice" → ฝึกพูด 2 นาทีไม่หยุด → บันทึกเสียง ฟังย้อน หาจุดติดขัด'},
+  ],
+  // พุธ = Writing Task 2
+  3:[
+    {id:"i1",t:"10:15",e:"✍️",tx:"ielts-simon.com — อ่าน Essay ตัวอย่าง Band 7 (15 นาที)",tg:"IELTS Writing 2",tc:"#4A148C",tb:"#EDE7F6",
+     detail:"เปิด ielts-simon.com > Writing Task 2 → อ่าน 1 essay Band 7 → จดโครงสร้าง: Introduction / Body 1 / Body 2 / Conclusion"},
+    {id:"i2",t:"10:30",e:"📝",tx:"เขียน Writing Task 2 ≥250 คำ จับเวลา 40 นาที",tg:"IELTS Writing 2",tc:"#4A148C",tb:"#EDE7F6",
+     detail:"เลือกโจทย์จาก ieltsliz.com > Writing Task 2 → เขียนบน Notes app ให้ครบ 250 คำ จับเวลา 40 นาที"},
+    {id:"i3",t:"11:10",e:"🤖",tx:'ChatGPT เช็คงาน Task 2 + จด Anki (35 นาที)',tg:"IELTS Writing 2",tc:"#4A148C",tb:"#EDE7F6",
+     detail:'Copy ไป ChatGPT → พิมพ์: "Grade my IELTS Writing Task 2 by band score. Focus on Task Response, Coherence and Cohesion, Lexical Resource, Grammatical Range. Give specific corrections line by line." → จดโครงสร้างที่ผิดลง Anki'},
+  ],
+  // พฤหัส = ทบทวน
+  4:[
+    {id:"i1",t:"10:15",e:"🃏",tx:"Anki — ทบทวนคำศัพท์สัปดาห์นี้ (30 นาที)",tg:"IELTS Review",tc:"#BF360C",tb:"#FBE9E7",
+     detail:"เปิด Anki → ทบทวนคำศัพท์ที่เพิ่มไปตลอดสัปดาห์ → เป้าหมาย 20-30 คำ/สัปดาห์"},
+    {id:"i2",t:"10:45",e:"📋",tx:"สรุปจุดอ่อนสัปดาห์นี้ (30 นาที)",tg:"IELTS Review",tc:"#BF360C",tb:"#FBE9E7",
+     detail:"เปิด Notes app → ดูจุดที่ผิดซ้ำๆ ตลอดสัปดาห์ → เขียนสรุปว่า 'สัปดาห์นี้ยังอ่อนเรื่องอะไร'"},
+    {id:"i3",t:"11:15",e:"🔁",tx:"ฝึกซ้ำ skill ที่อ่อนที่สุดของสัปดาห์ (30 นาที)",tg:"IELTS Review",tc:"#BF360C",tb:"#FBE9E7",
+     detail:"เลือก skill ที่อ่อนสุดแล้วฝึกซ้ำ: Listening / Reading / Writing / Speaking"},
+  ],
 };
-// ── MILESTONES (เดิม + ใหม่) ──
+
+// ── วันศุกร์ tasks ทั้งหมด
+const FRI=[
+  {id:"f1", t:"09:30",e:"⏰",tx:"ตื่น 9:30 — วันหยุดศุกร์",tg:"เช้า",tc:"#1B5E20",tb:"#E8F5E9",detail:""},
+  {id:"f2", t:"10:00",e:"📊",tx:"เช็คราคาทอง (Gold Now) 15 นาที",tg:"การเงิน",tc:"#004D40",tb:"#E0F2F1",detail:""},
+  {id:"f3", t:"10:00",e:"📝",tx:"IELTS Full Mock Test — ieltsonlinetests.com",tg:"IELTS Mock",tc:"#0D47A1",tb:"#E3F2FD",
+   detail:"เปิด ieltsonlinetests.com → General Training → ทำชุดเต็ม (Listening + Reading + Writing) จำลองสอบจริง"},
+  {id:"f4", t:"10:00",e:"🎧",tx:"Mock: Listening (30 นาที)",tg:"IELTS Mock",tc:"#0D47A1",tb:"#E3F2FD",detail:"จับเวลาเหมือนสอบจริง ห้ามหยุด"},
+  {id:"f5", t:"10:30",e:"📖",tx:"Mock: Reading (60 นาที)",tg:"IELTS Mock",tc:"#0D47A1",tb:"#E3F2FD",detail:"จับเวลาเหมือนสอบจริง ห้ามหยุด"},
+  {id:"f6", t:"11:30",e:"✍️",tx:"Mock: Writing Task 1+2 (60 นาที)",tg:"IELTS Mock",tc:"#0D47A1",tb:"#E3F2FD",detail:"Task 1: 20 นาที | Task 2: 40 นาที"},
+  {id:"f7", t:"12:30",e:"☕",tx:"พักกินข้าว",tg:"พัก",tc:"#5D4037",tb:"#EFEBE9",detail:""},
+  {id:"f8", t:"13:00",e:"🔍",tx:"รีเสิร์ช PSW Programs ในไทย + แคนาดา",tg:"PSW",tc:"#1B5E20",tb:"#E8F5E9",
+   detail:"ค้น: PSW certificate Thailand online, PSW program Canada Ontario, Humber Seneca PSW international"},
+  {id:"f9", t:"14:00",e:"💻",tx:"เรียน AI + Remote Bookkeeping (QuickBooks/Xero)",tg:"Bookkeeping",tc:"#4A148C",tb:"#EDE7F6",
+   detail:"สมัคร QuickBooks ProAdvisor (ฟรี) หรือ Xero Advisor Certified → ฝึกใช้ AI จัดระเบียบข้อมูล"},
+  {id:"f10",t:"17:00",e:"🏖️",tx:"พักผ่อน / ทำสิ่งที่ชอบ",tg:"พัก",tc:"#5D4037",tb:"#EFEBE9",detail:""},
+  ...NIGHT.map(t=>({...t,id:"fn"+t.id})),
+];
+
+// ── MILESTONES
 const MS=[
-  // Phase 1 — เกาหลี (Foundation)
-  {f:"2026-06-01",to:"2026-06-07",id:"m1",e:"🛂",tx:"ต่ออายุพาสปอร์ต (เหลือ < 3 ปี)",                         tg:"เอกสาร",  tc:"#0D47A1",tb:"#E3F2FD"},
-  {f:"2026-06-01",to:"2026-06-07",id:"m2",e:"📄",tx:"แปลวุฒิ + ประวัติทำงานเป็นอังกฤษ",                       tg:"เอกสาร",  tc:"#0D47A1",tb:"#E3F2FD"},
-  {f:"2026-06-01",to:"2026-06-07",id:"m3",e:"🌐",tx:"ลงทะเบียน toea.doe.go.th",                               tg:"ต่างประเทศ",tc:"#1B5E20",tb:"#E8F5E9"},
-  {f:"2026-06-01",to:"2026-06-07",id:"m4",e:"📊",tx:"สมัคร Intuit Academy + เริ่ม QuickBooks Online Cert",    tg:"Finance", tc:"#1565C0",tb:"#E3F2FD",new:true},
-  {f:"2026-06-01",to:"2026-06-07",id:"m5",e:"🎓",tx:"สมัคร iTalki + Preply + เปิด TikTok",                   tg:"รายได้",  tc:"#BF360C",tb:"#FBE9E7"},
-  {f:"2026-06-15",to:"2026-06-21",id:"m6",e:"📚",tx:"สมัคร Xero Central + เริ่ม Xero Advisor Cert (ฟรี)",    tg:"Finance", tc:"#1565C0",tb:"#E3F2FD",new:true},
-  {f:"2026-07-01",to:"2026-07-07",id:"m7",e:"🏆",tx:"สอบผ่าน QuickBooks Online Certified ✅",                  tg:"Finance", tc:"#1565C0",tb:"#E3F2FD",new:true},
-  {f:"2026-07-15",to:"2026-07-21",id:"m8",e:"🏆",tx:"สอบผ่าน Xero Advisor Certified ✅",                      tg:"Finance", tc:"#1565C0",tb:"#E3F2FD",new:true},
-  {f:"2026-08-01",to:"2026-08-07",id:"m9",e:"📊",tx:"เริ่ม CFI Bookkeeping Course (corporatefinanceinstitute.com)", tg:"Finance",tc:"#1565C0",tb:"#E3F2FD",new:true},
-  {f:"2026-08-01",to:"2026-08-07",id:"m10",e:"📝",tx:"ลงทะเบียนสอบ IELTS (เป้าสอบ พ.ย. 2026)",               tg:"IELTS",  tc:"#E65100",tb:"#FFF3E0",new:true},
-  {f:"2026-09-01",to:"2026-09-07",id:"m11",e:"💼",tx:"สร้าง Portfolio Bookkeeping 3 ชิ้น (จำลอง)",            tg:"Finance", tc:"#1565C0",tb:"#E3F2FD",new:true},
-  {f:"2026-09-15",to:"2026-09-21",id:"m12",e:"🌐",tx:"เปิดโปรไฟล์ Fiverr + Upwork (Finance/Bookkeeping)",    tg:"Finance", tc:"#1565C0",tb:"#E3F2FD",new:true},
-  {f:"2026-08-01",to:"2026-08-07",id:"m13",e:"📝",tx:"สอบ IELTS — เป้า 6.5+ 🎯",                                tg:"IELTS",  tc:"#E65100",tb:"#FFF3E0",new:true},
-  {f:"2026-09-01",to:"2026-09-07",id:"m14",e:"🏦",tx:"ปิดบัญชีเกาหลี โอนเงินกลับไทยทั้งหมด",                tg:"การเงิน", tc:"#004D40",tb:"#E0F2F1"},
-  {f:"2026-09-14",to:"2026-09-21",id:"m15",e:"🇹🇭",tx:"กลับไทย! ✈️ 21 กันยายน 2026 🎉",                          tg:"สำคัญ",  tc:"#B71C1C",tb:"#FFEBEE"},
-  // Phase 2 — ไทย (Build Income)
-  {f:"2027-01-01",to:"2027-01-10",id:"m16",e:"🪙",tx:"ติดตั้งตู้ซักผ้า + ตู้น้ำดื่ม (~200,000 บาท)",        tg:"ลงทุน",  tc:"#4A148C",tb:"#EDE7F6"},
-  {f:"2027-01-10",to:"2027-01-20",id:"m17",e:"💼",tx:"รับลูกค้า Bookkeeping ไทยรายแรก (Fiverr/Facebook)",    tg:"Finance", tc:"#1565C0",tb:"#E3F2FD",new:true},
-  {f:"2027-02-01",to:"2027-02-14",id:"m18",e:"💰",tx:"เป้า: ลูกค้า 3 ราย = 24,000 บาท/เดือน",               tg:"Finance", tc:"#1565C0",tb:"#E3F2FD",new:true},
-  {f:"2027-03-01",to:"2027-03-07",id:"m19",e:"🌍",tx:"เริ่มหาลูกค้าต่างชาติใน Upwork (eCommerce Bookkeeping)",tg:"Finance",tc:"#1565C0",tb:"#E3F2FD",new:true},
-  {f:"2027-04-01",to:"2027-04-07",id:"m20",e:"🎓",tx:"เริ่มเรียน Accounting Diploma ออนไลน์ (สำหรับ NOC 12200 แคนาดา)", tg:"Finance",tc:"#1565C0",tb:"#E3F2FD",new:true},
-  {f:"2027-06-01",to:"2027-06-07",id:"m21",e:"💰",tx:"เป้า: ลูกค้า 5 ราย = 40,000 บาท/เดือน ✅",            tg:"Finance", tc:"#1565C0",tb:"#E3F2FD",new:true},
-  {f:"2027-08-01",to:"2027-08-07",id:"m22",e:"🇨🇦",tx:"ยื่น Express Entry Profile + สมัคร Saskatchewan/Manitoba PNP", tg:"PR",tc:"#B71C1C",tb:"#FFEBEE",new:true},
-  {f:"2027-10-01",to:"2027-10-07",id:"m23",e:"📋",tx:"ตรวจประวัติอาชญากรรม (ใบ ป.106) + ตรวจสุขภาพ",        tg:"เอกสาร", tc:"#0D47A1",tb:"#E3F2FD"},
-  // Phase 3 — แคนาดา (PR Pathway)
-  {f:"2028-01-01",to:"2028-01-10",id:"m24",e:"🛫",tx:"บินแคนาดา ✈️ เริ่มทำงาน Bookkeeper/Accounting Tech",   tg:"สำคัญ",  tc:"#B71C1C",tb:"#FFEBEE"},
-  {f:"2028-06-01",to:"2028-06-07",id:"m25",e:"📊",tx:"ครบ 6 เดือน Canadian Work Experience — เช็คคะแนน CRS", tg:"PR",     tc:"#B71C1C",tb:"#FFEBEE",new:true},
-  {f:"2028-09-01",to:"2028-09-07",id:"m26",e:"🎓",tx:"เริ่มเรียน CPA PEP (Chartered Professional Accountant)", tg:"Finance",tc:"#1565C0",tb:"#E3F2FD",new:true},
-  {f:"2028-12-01",to:"2028-12-07",id:"m27",e:"🇨🇦",tx:"ยื่น Express Entry PR (NOC 12200) 🎉",                tg:"PR",     tc:"#B71C1C",tb:"#FFEBEE",new:true},
+  {f:"2026-06-01",to:"2026-06-07",id:"ms1",e:"🛂",tx:"ต่ออายุพาสปอร์ต (เหลือ 3+ ปี)",tg:"เอกสาร",tc:"#0D47A1",tb:"#E3F2FD"},
+  {f:"2026-06-01",to:"2026-06-07",id:"ms2",e:"🌐",tx:"ลงทะเบียน WES.org เริ่มทำ ECA วุฒิ มข.",tg:"ECA",tc:"#1B5E20",tb:"#E8F5E9"},
+  {f:"2026-07-01",to:"2026-07-07",id:"ms3",e:"📞",tx:"ปรึกษา RCIC เรื่องเส้นทาง PR แคนาดา",tg:"PR",tc:"#B71C1C",tb:"#FFEBEE"},
+  {f:"2026-07-01",to:"2026-07-07",id:"ms4",e:"🪙",tx:"สำรวจทำเลตู้ซักผ้า (ให้คนในบ้านช่วย)",tg:"ลงทุน",tc:"#4A148C",tb:"#EDE7F6"},
+  {f:"2026-08-01",to:"2026-08-31",id:"ms5",e:"🎯",tx:"สอบ IELTS จริง — เป้า CLB 5+ (Band 5.0-5.5)",tg:"IELTS",tc:"#0D47A1",tb:"#E3F2FD"},
+  {f:"2026-10-01",to:"2026-10-07",id:"ms6",e:"🇹🇭",tx:"กลับไทย! ลงเรียน PSW Certificate",tg:"PSW",tc:"#B71C1C",tb:"#FFEBEE"},
+  {f:"2026-10-01",to:"2026-10-07",id:"ms7",e:"🏦",tx:"ปิดบัญชีเกาหลี โอนเงินกลับไทย + ติดตั้งตู้ซักผ้า",tg:"การเงิน",tc:"#004D40",tb:"#E0F2F1"},
+  {f:"2026-11-01",to:"2026-11-07",id:"ms8",e:"📋",tx:"เตรียมเอกสาร Caregiver Pilot + หา Job Offer แคนาดา",tg:"PR",tc:"#B71C1C",tb:"#FFEBEE"},
+  {f:"2026-12-01",to:"2026-12-07",id:"ms9",e:"🇨🇦",tx:"ยื่น Caregiver Pilot ถ้า Window เปิด",tg:"PR",tc:"#B71C1C",tb:"#FFEBEE"},
+  {f:"2028-01-01",to:"2028-03-31",id:"ms10",e:"✈️",tx:"บินแคนาดา (Caregiver PR หรือ Student Permit PSW)",tg:"สำคัญ",tc:"#B71C1C",tb:"#FFEBEE"},
+  {f:"2028-10-01",to:"2028-12-31",id:"ms11",e:"🏆",tx:"ยื่น PNP ถ้ายังไม่ได้ PR Express Entry",tg:"PR",tc:"#B71C1C",tb:"#FFEBEE"},
 ];
 
 const getMS=d=>MS.filter(m=>d>=m.f&&d<=m.to);
-const getWK=d=>WK[new Date(d).getDay()]||[];
 const done=(d,id)=>!!C[d+"_"+id];
 const tog=(d,id)=>{C[d+"_"+id]=!C[d+"_"+id];sv();render();};
 
 function card(task,d,cls=""){
   const ok=done(d,task.id);
-  const extra=task.new?` <span style="background:#7B1FA2;color:#fff;font-size:9px;padding:1px 5px;border-radius:99px;font-weight:700">ใหม่</span>`:"";
   return`<div class="task${cls?" "+cls:""} ${ok?"done":""}" onclick="tog('${d}','${task.id}')">
     <div class="chk${ok?" on":""}">${ok?"✓":""}</div>
     <div class="ti">
-      <div class="tx${ok?" done":""}">${task.e||""} ${task.tx}${extra}</div>
+      <div class="tx${ok?" done":""}">${task.e} ${task.tx}</div>
+      ${task.detail&&!ok?`<div class="tx-detail">${task.detail}</div>`:""}
       <div class="meta">
         <span class="tag" style="background:${task.tb};color:${task.tc}">${task.tg}</span>
         ${task.t?`<span class="due">⏰ ${task.t}</span>`:""}
@@ -168,18 +215,22 @@ function card(task,d,cls=""){
 function render(){
   const d=cur,isToday=d===TODAY;
   const obj=new Date(d);
-  const day=THD[obj.getDay()];
-  const isWE=obj.getDay()===0||obj.getDay()===5||obj.getDay()===6;
+  const dayNum=obj.getDay();
+  const day=THD[dayNum];
   const yr=obj.getFullYear()+543;
+  const isFri=dayNum===5;
+  const ieltsData=IELTS[dayNum];
 
   document.getElementById("d-main").innerHTML=
     `${obj.getDate()} ${THM[obj.getMonth()]} ${yr}${isToday?'<span class="today-pill">วันนี้</span>':""}`;
-  document.getElementById("d-sub").textContent=`วัน${day}${isWE?" 🎉 วันหยุด":""}`;
 
-  const isFri=obj.getDay()===5;
-  const ms=getMS(d),wk=getWK(d);
-  const dailyForCount=isFri?DAILY.filter(t=>t.id!=="d6"&&t.id!=="d7"):DAILY;
-  const all=[...dailyForCount,...wk,...ms];
+  const dayLabels={6:"🎧 Listening",0:"📖 Reading",1:"✍️ Writing Task 1",2:"🗣️ Speaking",3:"📝 Writing Task 2",4:"🔁 ทบทวน",5:"🎉 Mock Test + Bookkeeping"};
+  document.getElementById("d-sub").textContent=`วัน${day} — IELTS: ${dayLabels[dayNum]||""}`;
+
+  const ms=getMS(d);
+  const morningTasks=isFri?[]:getMorning(ieltsData||[]);
+  const allFri=isFri?FRI:[];
+  const all=[...morningTasks,...NIGHT,...allFri,...ms];
   const tot=all.length,dn=all.filter(t=>done(d,t.id)).length;
   const p=tot?Math.round(dn/tot*100):0;
   const pc=p>=80?"#4CAF50":p>=50?"#FF9800":"#F44336";
@@ -191,44 +242,62 @@ function render(){
   if(!isToday) h+=`<button class="back-btn" onclick="goToday()">📅 กลับวันนี้</button>`;
 
   if(ms.length){
-    h+=`<div class="ms-banner"><div class="ms-title">🚨 MILESTONE สัปดาห์นี้!</div>`;
-    ms.forEach(m=>h+=`<div class="ms-item">${m.e} ${m.tx}${m.new?' ⭐ ใหม่':''}</div>`);
+    h+=`<div class="ms-banner"><div class="ms-title">🚨 MILESTONE เดือนนี้!</div>`;
+    ms.forEach(m=>h+=`<div class="ms-item">${m.e} ${m.tx}</div>`);
     h+=`</div>`;
   }
 
-  h+=`<div class="slabel">📋 งานประจำวัน</div>`;
-  const dailyShow=isFri?DAILY.filter(t=>t.id!=="d6"&&t.id!=="d7"):DAILY;
-  dailyShow.forEach(t=>h+=card(t,d));
-
-  if(wk.length){
-    h+=`<hr class="divider"><div class="slabel">📅 งานวัน${day}</div>`;
-    wk.forEach(t=>h+=card(t,d,"wk"));
+  if(isFri){
+    h+=`<div class="day-banner" style="background:#FFF3E0;border:1.5px solid #FFB74D;color:#BF360C">🎉 วันหยุดศุกร์<br>10:00 Mock IELTS → 13:00 PSW Research → 14:00 Bookkeeping</div>`;
+    h+=`<div class="slabel">⏰ เช้า — Mock IELTS Full Test</div>`;
+    FRI.slice(0,6).forEach(t=>h+=card(t,d,"fri"));
+    h+=`<hr class="divider"><div class="slabel">🌅 บ่าย — PSW + Bookkeeping</div>`;
+    FRI.slice(6,10).forEach(t=>h+=card(t,d,"fri"));
+    h+=`<hr class="divider"><div class="slabel">🌙 กลางคืน</div>`;
+    FRI.slice(10).forEach(t=>h+=card(t,d,"night"));
+  } else {
+    h+=`<div class="slabel">⏰ เช้า 10:00</div>`;
+    const morning=getMorning(ieltsData||[]);
+    morning.slice(0,2).forEach(t=>h+=card(t,d));
+    if(ieltsData){
+      h+=`<div class="slabel">📚 IELTS — ${dayLabels[dayNum]}</div>`;
+      ieltsData.forEach(t=>h+=card(t,d,"ielts"));
+    }
+    h+=`<hr class="divider"><div class="slabel">☕ พัก + งาน</div>`;
+    morning.slice(morning.length-3).forEach(t=>h+=card(t,d));
+    h+=`<hr class="divider"><div class="slabel">🌙 หลังเลิกงาน</div>`;
+    NIGHT.forEach(t=>h+=card(t,d,"night"));
   }
+
   if(ms.length){
-    const newMs=ms.filter(m=>m.new);
-    const oldMs=ms.filter(m=>!m.new);
-    if(newMs.length){
-      h+=`<hr class="divider"><div class="slabel" style="color:#7B1FA2">📊 งานใหม่ Finance & IELTS</div>`;
-      newMs.forEach(t=>h+=card(t,d,"new"));
-    }
-    if(oldMs.length){
-      h+=`<hr class="divider"><div class="slabel" style="color:#C62828">🚨 MILESTONE</div>`;
-      oldMs.forEach(t=>h+=card(t,d,"ms"));
-    }
+    h+=`<hr class="divider"><div class="slabel" style="color:#C62828">🚨 MILESTONE</div>`;
+    ms.forEach(t=>h+=card(t,d,"ms"));
   }
 
   h+=`<hr class="divider">
-  <button class="note-btn" onclick="toggleNote()">📝 ${N[d]?N[d].slice(0,38)+"...":"โน้ตประจำวัน..."}</button>
-  ${showNote?`<textarea class="note-area" id="na" placeholder="บันทึกรายได้ บทเรียน ความรู้สึก..." onchange="saveNote(this.value)">${N[d]||""}</textarea>`:""}`;
+  <button class="note-btn" onclick="toggleNote()">📝 ${N[d]?N[d].slice(0,40)+"...":"โน้ต / คะแนน IELTS / รายได้..."}</button>
+  ${showNote?`<textarea class="note-area" id="na" placeholder="บันทึกคะแนน IELTS วันนี้ / สิ่งที่ยังอ่อน / รายได้..." onchange="saveNote(this.value)">${N[d]||""}</textarea>`:""}`;
 
   if(p===100) h+=`<div class="win"><div style="font-size:36px">🎉</div>
     <div style="color:#fff;font-weight:900;font-size:17px;margin-top:6px">เสร็จหมดทุกงานวันนี้!</div>
     <div style="color:rgba(255,255,255,.8);font-size:12px;margin-top:4px">เก่งมาก! 💪</div></div>`;
 
-  h+=`<div class="foot">กดที่งานเพื่อติ๊ก ✅ กดอีกครั้งเพื่อยกเลิก<br>บันทึกในเครื่องอัตโนมัติ</div>`;
+  h+=`<div class="foot">กดที่งานเพื่อติ๊ก ✅ • กดอีกครั้งเพื่อยกเลิก • บันทึกอัตโนมัติ</div>`;
   document.getElementById("app").innerHTML=h;
   if(showNote) setTimeout(()=>{const el=document.getElementById("na");if(el)el.focus();},50);
 }
+
+function getMorning(ielts){
+  return[
+    {id:"a1",t:"10:00",e:"⏰",tx:"ตื่นนอน 10 โมง",tg:"เช้า",tc:"#1B5E20",tb:"#E8F5E9",detail:""},
+    {id:"a2",t:"10:05",e:"📊",tx:"เช็คราคาทอง (Gold Now) 15 นาที",tg:"การเงิน",tc:"#004D40",tb:"#E0F2F1",detail:""},
+    ...ielts,
+    {id:"a9",t:"11:45",e:"☕",tx:"พักผ่อน + กินข้าว",tg:"พัก",tc:"#5D4037",tb:"#EFEBE9",detail:""},
+    {id:"a10",t:"13:00",e:"💼",tx:"เตรียมตัวไปทำงาน",tg:"งาน",tc:"#01579B",tb:"#E3F2FD",detail:""},
+    {id:"a11",t:"14:00",e:"💼",tx:"ทำงานหลัก 14:00–02:00",tg:"งาน",tc:"#01579B",tb:"#E3F2FD",detail:""},
+  ];
+}
+
 function go(n){cur=shift(cur,n);render();}
 function goToday(){cur=TODAY;render();}
 function toggleNote(){showNote=!showNote;render();}
